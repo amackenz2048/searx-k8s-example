@@ -1,11 +1,3 @@
-# What is Kubernetes?
-
-Primarily it is an API. k8s doesn't really "exist"
-
-It is also a cli tool (kubectl) which speaks to the API.
-
-Behind the scenes there are many things which implement that API.
-
 # Setup
 
 ## Microk8s
@@ -46,5 +38,4 @@ hostname of "searx.localhost" to your service. Add an entry for this to your
 `hosts` file:
 ```
 # 127.0.0.1  searx.localhost
-```
 ```
