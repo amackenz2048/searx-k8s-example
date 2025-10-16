@@ -1,0 +1,40 @@
+############################# App Deployment #############################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: searx-app
+  namespace: searx
+  labels:
+    app: searx-app
+    owner: edespot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: searx-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: searx-app
+        owner: edespot
+    spec:
+      containers:
+        - name: searx
+          # https://hub.docker.com/r/searxng/searxng
+          image: searxng/searxng:latest
+#          image: searxng/searxng:2025.3.15-a1d5add71
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - name: searx-data
+              mountPath: /etc/searx
+          env:
+            - name: SEARXNG_BASE_URL
+              value: https://searx.edespot.com/
+      volumes:
+        - name: searx-data
+          persistentVolumeClaim:
+            claimName: searx-data

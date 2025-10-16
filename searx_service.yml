@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: searx-service
+  labels:
+    app: searx-app
+  namespace: searx
+spec:
+  #type: ClusterIP
+  type: LoadBalancer
+  selector:
+    app: searx-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
