@@ -6,7 +6,6 @@ metadata:
   namespace: searx
   labels:
     app: searx-app
-    owner: edespot
 spec:
   replicas: 1
   selector:
@@ -18,7 +17,6 @@ spec:
     metadata:
       labels:
         app: searx-app
-        owner: edespot
     spec:
       containers:
         - name: searx
@@ -33,7 +31,7 @@ spec:
               mountPath: /etc/searx
           env:
             - name: SEARXNG_BASE_URL
-              value: https://searx.edespot.com/
+              value: https://searx.localhost/
       volumes:
         - name: searx-data
           persistentVolumeClaim:
